@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disco Launcher</title>
+    <link rel="icon" type="image/x-icon" href="./assets/logo-w@.5.svg">
+    <link rel="stylesheet" href="dist/styles.css">
+</head>
+
+<body id="welcome-app">
+    <div id="loader" class="loader">
+        <p class="loader-text"></p>
+        <svg id="loader-icon" viewBox="0 0 122.01 121.55" xmlns="http://www.w3.org/2000/svg">
+            <g transform="matrix(0.058, 0, 0, 0.058, 46.505001, 46.274914)">
+                <path class="st0"
+                    d="M 336.473 336.474 C 334.733 372.614 331.907 405.171 328.395 431.29 C 361.408 428.268 391.718 423.304 416.986 416.999 C 423.285 391.726 428.256 361.409 431.291 328.396 C 405.143 331.9 372.613 334.754 336.473 336.474 Z"
+                    style="stroke-width: 1.556;"></path>
+                <path class="st0"
+                    d="M 316.376 491.09 C 341.293 484.548 370.768 479.442 402.654 476.329 C 405.495 459.275 408.609 445.856 411.801 435.825 C 377.075 445.361 345.364 462.206 318.442 484.587 C 317.738 486.698 317.061 488.874 316.376 491.09 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, -0.000003, -0.000086)"></path>
+                <path class="st0"
+                    d="M 199.94 500.002 C 232.789 497.916 267.211 497.916 300.06 500.002 C 297.911 480.877 295.539 466.506 293.117 456.345 C 279.113 453.909 264.703 452.633 250 452.633 C 235.298 452.633 220.889 453.909 206.87 456.345 C 204.461 466.506 202.083 480.891 199.94 500.002 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, -0.000026, 0)"></path>
+                <path class="st0"
+                    d="M 181.573 484.587 C 154.65 462.206 122.952 445.359 88.213 435.825 C 91.391 445.856 94.519 459.275 97.352 476.329 C 129.244 479.443 158.721 484.55 183.624 491.09 C 182.953 488.874 182.262 486.698 181.591 484.601 L 181.573 484.587 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, 0.00001, -0.000086)"></path>
+                <path class="st0"
+                    d="M 491.088 316.36 C 488.881 317.01 486.711 317.701 484.605 318.392 C 462.218 345.321 445.378 377.032 435.843 411.777 C 445.88 408.586 459.273 405.445 476.333 402.631 C 479.446 370.739 484.56 341.243 491.088 316.36 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, -0.000046, 0.000012)"></path>
+                <path class="st0"
+                    d="M 192.502 434.807 C 230.067 433.635 269.933 433.635 307.498 434.807 C 306.319 398.236 304.392 365.382 302.014 339.143 C 267.913 337.096 232.079 337.096 197.985 339.143 C 195.608 365.381 193.681 398.25 192.502 434.807 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, -0.000026, -0.000016)"></path>
+                <path class="st0"
+                    d="M 68.709 328.384 C 72.221 354.532 75.047 387.075 76.787 423.215 C 112.927 424.949 145.457 427.775 171.605 431.293 C 168.57 398.28 163.599 367.962 157.3 342.702 C 132.033 336.411 101.724 331.419 68.709 328.384 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, 0.000001, -0.000002)"></path>
+                <path class="st0"
+                    d="M 8.925 316.399 C 15.452 341.282 20.553 370.764 23.679 402.67 C 40.739 405.511 54.126 408.625 64.157 411.777 C 54.621 377.058 37.782 345.36 15.395 318.431 C 13.29 317.742 11.133 317.063 8.925 316.399 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, -0.00002, -0.000001)"></path>
+                <path class="st0"
+                    d="M 500 300.048 C 497.922 267.191 497.922 232.799 500 199.942 C 480.889 202.077 466.51 204.476 456.349 206.887 C 453.919 220.879 452.643 235.288 452.643 249.996 C 452.643 264.692 453.919 279.101 456.349 293.119 C 466.51 295.527 480.887 297.899 500 300.048 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, -0.000003, 0.000012)"></path>
+                <path class="st0"
+                    d="M 434.81 307.486 C 433.636 269.901 433.63 230.061 434.81 192.49 C 398.228 193.674 365.389 195.602 339.139 197.974 C 337.1 232.082 337.106 267.882 339.139 301.989 C 365.383 304.36 398.226 306.286 434.81 307.486 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, 0.000055, 0.000012)"></path>
+                <path class="st0"
+                    d="M 191.731 191.746 C 190.93 229.788 190.93 270.226 191.731 308.28 C 229.785 309.076 270.224 309.062 308.278 308.28 C 309.074 270.226 309.074 229.788 308.278 191.746 C 270.224 190.924 229.785 190.924 191.731 191.746 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, 0.000004, -0.000003)"></path>
+                <path class="st0"
+                    d="M 160.862 301.989 C 162.895 267.882 162.895 232.055 160.862 197.974 C 134.61 195.578 101.767 193.674 65.191 192.49 C 66.357 230.049 66.365 269.915 65.191 307.486 C 101.767 306.286 134.61 304.386 160.862 301.989 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, 0.000018, 0.000012)"></path>
+                <path class="st0"
+                    d="M 43.664 293.121 L 43.664 293.107 C 46.093 279.102 47.369 264.693 47.369 249.997 C 47.369 235.289 46.093 220.88 43.664 206.888 C 33.508 204.477 19.125 202.08 0 199.943 C 2.078 232.801 2.078 267.18 0 300.05 C 19.125 297.902 33.508 295.53 43.664 293.121 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, 0.000003, 0.00002)"></path>
+                <path class="st0"
+                    d="M 435.843 88.201 C 445.379 122.934 462.23 154.656 484.633 181.585 C 486.738 182.276 488.885 182.954 491.089 183.618 C 484.562 158.709 479.449 129.212 476.335 97.346 C 459.273 94.493 445.882 91.379 435.843 88.201 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, -0.000063, -0.000025)"></path>
+                <path class="st0"
+                    d="M 342.701 157.315 C 367.968 163.593 398.271 168.571 431.29 171.606 C 427.779 145.458 424.947 112.929 423.213 76.789 C 387.073 75.055 354.541 72.229 328.396 68.712 C 331.425 101.737 336.402 132.04 342.701 157.315 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, -0.000083, 0.000007)"></path>
+                <path class="st0"
+                    d="M 192.5 65.181 C 193.68 101.75 195.607 134.606 197.985 160.858 C 232.086 162.891 267.913 162.891 302.014 160.858 C 304.39 134.594 306.319 101.75 307.498 65.181 C 269.931 66.353 230.066 66.34 192.5 65.181 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, -0.000051, 0.000004)"></path>
+                <path class="st0"
+                    d="M 76.787 76.789 C 75.047 112.929 72.221 145.486 68.709 171.606 C 101.722 168.583 132.032 163.62 157.3 157.315 C 163.599 132.042 168.57 101.724 171.605 68.711 C 145.457 72.215 112.927 75.069 76.787 76.789 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, 0.000001, -0.000021)"></path>
+                <path class="st0"
+                    d="M 15.365 181.585 C 37.767 154.656 54.619 122.946 64.155 88.201 C 54.124 91.379 40.738 94.493 23.678 97.346 C 20.565 129.225 15.451 158.708 8.923 183.618 C 11.124 182.954 13.261 182.276 15.365 181.585 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, 0.000019, -0.000025)"></path>
+                <path class="st0"
+                    d="M 316.389 8.913 C 317.059 11.114 317.75 13.277 318.428 15.375 C 345.35 37.77 377.061 54.628 411.787 64.151 C 408.609 54.12 405.495 40.715 402.66 23.647 C 370.766 20.547 341.291 15.44 316.389 8.913 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, 0.000014, 0.000005)"></path>
+                <path class="st0"
+                    d="M 199.94 0.001 C 202.083 19.099 204.461 33.495 206.87 43.644 C 220.889 46.08 235.298 47.358 250 47.358 C 264.702 47.358 279.111 46.081 293.13 43.644 C 295.539 33.495 297.911 19.126 300.06 0.001 C 267.211 2.083 232.791 2.097 199.94 0.001 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, -0.000026, -0.000001)"></path>
+                <path class="st0"
+                    d="M 88.211 64.151 C 122.95 54.629 154.661 37.756 181.59 15.361 C 182.274 13.251 182.951 11.101 183.622 8.913 C 158.72 15.44 129.243 20.547 97.351 23.647 C 94.516 40.713 91.389 54.106 88.211 64.151 Z"
+                    style="stroke-width: 1.556; transform-box: fill-box; transform-origin: 50% 50%;"
+                    transform="matrix(-1, 0, 0, -1, 0.000019, 0.000005)"></path>
+            </g>
+        </svg>
+        <div class="loader-animation">
+            <span style="--index:0"></span>
+            <span style="--index:1"></span>
+            <span style="--index:2"></span>
+            <span style="--index:3"></span>
+            <span style="--index:4"></span>
+            <span style="--index:5"></span>
+            <span style="--index:6"></span>
+
+        </div>
+    </div>
+    <div id="background"></div>
+    <div id="welcome-page">
+        <div class="setup-pages">
+            <div class="setup-page" style="opacity: 1;" id="page-welcome">
+                <div class="setup-body">
+                    <p style="margin: 0px; display: none;"><img src="./assets/logo@.5.svg" width="30"
+                            style="filter: contrast(0) brightness(2);    transform: translateY(6px); padding-right: 8px;">
+                        <span data-i18n="welcome.welcome.appName">Disco Launcher</span>
+                    </p>
+                    <h1>Welcome</h1>
+                </div>
+                <div class="setup-footer">
+
+                    <p style="text-transform: uppercase;position: absolute;bottom: 80px;opacity: .75;"
+                        data-i18n="welcome.welcome.setupIntro">Let's setup your experience in a
+                        few short steps.</p>
+
+                    <p style="display:none; uppercase;position: absolute;bottom: 80px;opacity: .75;"
+                        data-i18n="welcome.welcome.warning">Warning: This is pre-release software and may contain bugs.
+                    </p>
+                    <button class="right-btn" data-i18n="welcome.common.next">next</button>
+                </div>
+            </div>
+
+            <div class="setup-page" id="page-wizard">
+                <div class="setup-body">
+                    <h1 data-i18n="welcome.wizard.title" class="small">Update Wizard</h1>
+                    <p data-i18n="welcome.wizard.description">Let's ensure your data is moved across safely! Click next
+                        to continue.</p>
+                </div>
+                <div class="setup-footer">
+                    <button class="left-btn" data-i18n="welcome.common.previous">previous</button>
+                    <button class="right-btn" data-i18n="welcome.common.next">next</button>
+                </div>
+            </div>
+            <div class="setup-page" id="update-loading">
+                <div class="setup-body">
+                    <h1 data-i18n="welcome.wizard.title" class="small">Update Wizard</h1>
+                    <p data-i18n="welcome.common.pleaseWait">Please wait...</p>
+                    <div id="update-loader" class="loader"
+                        style="background: transparent; box-shadow: none; pointer-events: none;">
+                        <div class="loader-animation">
+                            <span style="--index:0"></span>
+                            <span style="--index:1"></span>
+                            <span style="--index:2"></span>
+                            <span style="--index:3"></span>
+                            <span style="--index:4"></span>
+                            <span style="--index:5"></span>
+                            <span style="--index:6"></span>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="setup-footer" style="display: none;">
+                    <button class="right-btn" data-i18n="welcome.common.next">next</button>
+                </div>
+            </div>
+            <div class="setup-page" id="page-access">
+                <div class="setup-body">
+                    <h1 data-i18n="welcome.access.title" class="small">Ease of Access</h1>
+                    <p style="display: none;" data-i18n="welcome.access.description">Customize your experience to ensure
+                        that everything feels just right.</p>
+                    <div class="scroller" style="margin: 0px;">
+                        <div>
+                            <div class="group first-group">
+                                <p class="group-title" data-i18n="settings.ease_of_access.reduce_motion.title">Reduce
+                                    motion</p>
+                                <div class="tile-selector reduce-motion-toggle-switch" style="margin-bottom: 0px;">
+                                    <p data-i18n-init="common.actions.off">Off</p>
+                                    <div>
+                                        <div class="metro-toggle-switch"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group" style="margin-top: 22px !important;">
+                                <p class="group-title" data-i18n="settings.ease_of_access.high_contrast.title">High
+                                    contrast</p>
+                                <div class="tile-selector high-contrast-toggle-switch" style="margin-bottom: 0px;">
+                                    <p data-i18n-init="common.actions.off">Off</p>
+                                    <div>
+                                        <div id="high-contrast-toggle-switch" class="metro-toggle-switch"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group">
+                                <p class="group-title" data-i18n="welcome.access.background">Background</p>
+                                <div class="metro-dropdown-menu" id="theme-chooser" selected="1">
+                                    <div class="metro-dropdown-option" data-i18n="welcome.themes.light">Light</div>
+                                    <div class="metro-dropdown-option" data-i18n="welcome.themes.dark">Dark</div>
+                                    <div class="metro-dropdown-option" data-i18n="welcome.themes.auto">Auto</div>
+                                </div>
+                            </div>
+                            <div class="group">
+                                <p class="group-title" data-i18n="welcome.access.scaling">Scaling</p>
+                                <div id="display-scaling-chooser" class="metro-dropdown-menu" selected="0">
+                                    <div class="metro-dropdown-option" data-i18n="common.numbers.percent"
+                                        data-i18n-params="{value: 80}">80%</div>
+                                    <div class="metro-dropdown-option" data-i18n="common.numbers.percent"
+                                        data-i18n-params="{value: 90}">90%</div>
+                                    <div class="metro-dropdown-option" data-i18n="common.numbers.percent"
+                                        data-i18n-params="{value: 100}">100%</div>
+                                    <div class="metro-dropdown-option" data-i18n="common.numbers.percent"
+                                        data-i18n-params="{value: 110}">110%</div>
+                                    <div class="metro-dropdown-option" data-i18n="common.numbers.percent"
+                                        data-i18n-params="{value: 125}">125%</div>
+                                </div>
+                            </div>
+                            <div class="group">
+                                <p class="group-title" data-i18n="settings.ease_of_access.haptic_feedback.title">Haptic
+                                    feedback</p>
+                                <div class="tile-selector haptic-toggle-switch" style="margin-bottom: 0px;">
+                                    <p data-i18n-init="common.actions.off">Off</p>
+                                    <div>
+                                        <div id="haptic-toggle-switch" class="metro-toggle-switch"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="setup-footer">
+                    <button class="left-btn" data-i18n="welcome.common.previous">previous</button>
+                    <button class="right-btn" data-i18n="welcome.common.next">next</button>
+                </div>
+            </div>
+            <div class="setup-page" id="accent-color-picker">
+                <div class="setup-body">
+                    <h1 data-i18n="welcome.colors.title" class="small">Choose your color</h1>
+                    <p style="display: none;" data-i18n="colors.description">Pick a color that matches your mood.</p>
+                    <div class="accent-color-catalogue" style="overflow: hidden;position: relative;margin: 0px;">
+
+
+                        <div>
+                            <div style="--index:0;">
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-lime);">
+                                </div>
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-green);">
+                                </div>
+                                <div class="accent-color-catalogue-item"
+                                    style="background: var(--metro-color-emerald);"></div>
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-teal);">
+                                </div>
+                            </div>
+                            <div style="--index:1;">
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-cyan);">
+                                </div>
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-cobalt);">
+                                </div>
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-indigo);">
+                                </div>
+                                <div class="accent-color-catalogue-item selected"
+                                    style="background: var(--metro-color-violet);">
+                                </div>
+                            </div>
+                            <div style="--index:2;">
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-pink);">
+                                </div>
+                                <div class="accent-color-catalogue-item"
+                                    style="background: var(--metro-color-magenta);"></div>
+                                <div class="accent-color-catalogue-item"
+                                    style="background: var(--metro-color-crimson);"></div>
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-red);">
+                                </div>
+                            </div>
+                            <div style="--index:3;">
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-orange);">
+                                </div>
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-amber);">
+                                </div>
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-yellow);">
+                                </div>
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-brown);">
+                                </div>
+                            </div>
+                            <div style="--index:4;">
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-olive);">
+                                </div>
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-steel);">
+                                </div>
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-mauve);">
+                                </div>
+                                <div class="accent-color-catalogue-item" style="background: var(--metro-color-taupe);">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="setup-footer">
+                    <button class="left-btn" data-i18n="welcome.common.previous">previous</button>
+                    <button class="right-btn" data-i18n="welcome.common.next">next</button>
+                </div>
+            </div>
+            <div class="setup-page" id="page-permissions">
+                <div class="setup-body">
+                    <h1 data-i18n="welcome.permissions.title" class="small">Permissions</h1>
+                    <div class="scroller" style="overflow: hidden; position: relative; margin: 0px;">
+                        <div>
+                            <div class="permission-group">
+                                <p class="permission-title"><span class="permission-icon">󰄬</span> <span
+                                        data-i18n="welcome.permissions.groups.contacts.title">Contacts</span></p>
+                                <p class="permission-description"
+                                    data-i18n="welcome.permissions.groups.contacts.description">Access to contacts is
+                                    needed to display your contacts
+                                    live
+                                    tile.
+                                </p>
+                                <button class="metro-button link" data-i18n="common.actions.allow">allow</button>
+                            </div>
+                            <div class="permission-group">
+                                <p class="permission-title"><span class="permission-icon"></span> <span
+                                        data-i18n="welcome.permissions.groups.photos.title">Photos</span></p>
+                                <p class="permission-description"
+                                    data-i18n="welcome.permissions.groups.photos.description">Photo access allows you to
+                                    display your photos live
+                                    tile.
+                                </p>
+                                <button class="metro-button link" data-i18n="common.actions.allow">allow</button>
+                            </div>
+                            <div class="permission-group">
+                                <p class="permission-title"><span class="permission-icon"></span> <span
+                                        data-i18n="welcome.permissions.groups.notifications.title">Notifications</span>
+                                </p>
+                                <p class="permission-description"
+                                    data-i18n="welcome.permissions.groups.notifications.description">Enable
+                                    notifications to display your notifications
+                                    live
+                                    tile.</p>
+                                <button class="metro-button link" data-i18n="common.actions.allow">allow</button>
+                            </div>
+                            <div class="permission-group">
+                                <p class="permission-title"><span class="permission-icon"></span> <span
+                                        data-i18n="welcome.permissions.groups.accessibility.title">Accessibility</span>
+                                </p>
+                                <p class="permission-description"
+                                    data-i18n="welcome.permissions.groups.accessibility.description">Enable
+                                    accessibility to lock device.</p>
+                                <button class="metro-button link" data-i18n="common.actions.details">allow</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="setup-footer">
+                    <button class="left-btn" data-i18n="welcome.common.previous">previous</button>
+                    <button class="right-btn" data-i18n="welcome.common.next">next</button>
+
+                </div>
+            </div>
+            <div class="setup-page" id="page-readme">
+                <div class="setup-body">
+                    <h1 data-i18n="welcome.whatsnew.title" class="small">What's New?</h1>
+                    <div class="scroller" style="overflow: hidden; position: relative; margin: 0px;">
+                        <div>
+                            <!--WHATS NEW START-->
+                            <ul>
+                                <li><strong>Per-App Tile Preferences:</strong> Customize tile appearance (colors,
+                                    background) individually for each app.</li>
+                                <li><strong>Manual CSS Input and File Upload:</strong> Add custom CSS styles to Disco
+                                    Launcher using manual input or by uploading CSS files.</li>
+                                <li><strong>RTL Support:</strong> Improved right-to-left layout support for languages
+                                    like Arabic and Hebrew.</li>
+                                <li><strong>Reduced Motion Animations:</strong> Added accessibility options to reduce
+                                    animations on the welcome page.</li>
+                                <li><strong>Auto Theme Option:</strong> Automatically switch between light and dark
+                                    themes based on system settings.</li>
+                                <li><strong>Accent Color Tile Background:</strong> Updated background selection label
+                                    from 'Transparent' to 'Accent color'.</li>
+                                <li><strong>New Icons:</strong> Added new icons, including Metro Weather, Microsoft
+                                    Office apps, and updated versions of Discord, TikTok, Twitter, and WhatsApp icons.
+                                </li>
+                            </ul>
+                            <!--WHATS NEW END-->
+                        </div>
+                    </div>
+                </div>
+                <div class="setup-footer">
+                    <button class="left-btn" data-i18n="welcome.common.previous">previous</button>
+                    <button class="right-btn" data-i18n="welcome.common.next">next</button>
+
+                </div>
+            </div>
+            <div class="setup-page" id="page-finish">
+                <div class="setup-body">
+                    <h1 data-i18n="welcome.finish.title" class="small">Get ready to Disco</h1>
+                    <p data-i18n="welcome.finish.description">Your setup is done. Time to dive in!</p>
+                </div>
+                <div class="setup-footer">
+                </div>
+            </div>
+            <div class="setup-page" id="page-void">
+                <div class="setup-body">
+
+                </div>
+                <div class="setup-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>const DiscoMockInstance = !window.Disco
+        window.DiscoMockInstance = DiscoMockInstance</script>
+    <script src="dist/welcome.js"></script>
+</body>
+
+</html>

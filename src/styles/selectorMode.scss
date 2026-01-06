@@ -1,0 +1,22 @@
+body.selector-mode {
+    div.system-bar {
+        pointer-events: none !important;
+    }
+
+    div.disco-home-inner-tile,
+    .disco-home-tile-imageicon,
+    .disco-home-tile-title,
+    .disco-app-tile-icon,
+    .disco-app-tile-title,
+    .disco-app-tile-imageicon {
+        pointer-events: all !important;
+    }
+}
+
+body.mock-pointer {
+
+    &,
+    * {
+        cursor: none !important;
+    }
+}
