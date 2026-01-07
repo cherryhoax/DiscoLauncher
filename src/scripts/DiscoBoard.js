@@ -624,7 +624,7 @@ const backendMethods = {
           clearInterval(countdown);
         }
       }, 100 * animationDurationScale);
-      scrollers.tile_page_scroller.scrollTo(0, 0, 500)
+      if (window.scrollers) scrollers.tile_page_scroller.scrollTo(0, 0, 500)
     },
     get lastPush() {
       if (DiscoBoard.backendMethods.navigation.history.length == 0)

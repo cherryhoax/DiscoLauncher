@@ -169,9 +169,11 @@ document.querySelector("#page-wizard button.right-btn").addEventListener("flowCl
         localStorage.setItem("lastVersion", Disco.getAppVersion())
 
         loader.classList.add("finished");
-        document.querySelector("#update-loading p").innerText = "All done!"
+        const updateLoadingText = document.querySelector("#update-loading p");
+        if (updateLoadingText) updateLoadingText.innerText = "All done!"
         document.querySelector("#update-loader").remove()
-        document.querySelector("#update-loading div.setup-footer").style.removeProperty("display")
+        const updateLoadingFooter = document.querySelector("#update-loading div.setup-footer");
+        if (updateLoadingFooter) updateLoadingFooter.style.removeProperty("display")
         $("#update-loading").addClass("active").addClass("button-anim")
         setup.update_wizard = false
         history = history.filter(e => e != 1 || e != 2)
