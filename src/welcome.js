@@ -395,6 +395,21 @@ console.log("updatedapp", updatedApp)
 window.firstWelcome = firstWelcome
 var welcomei = 0
 welcomeTitle.innerText = i18n.t(welcomeType)
+
+function flipWelcome() {
+    welcomei++;
+    welcomeTitle.style.animation = "none"
+    welcomeTitle.classList.add(welcomei % 2 == 0 ? "flip2" : "flip")
+    setTimeout(() => {
+        welcomeTitle.removeAttribute("data-i18n")
+        welcomeTitle.innerText = welcomei % 2 == 0 ?
+            i18n.t(welcomeType) :
+            (greetings.getRandomWelcome()[firstWelcome ? "welcome" : "welcome_back"] || (firstWelcome ? "Welcome" : "Welcome back"));
+    }, 100);
+    setTimeout(() => {
+        welcomeTitle.classList.remove("flip", "flip2")
+    }, 2000);
+}
 function startFlipping() {
     if (!!localStorage.getItem("UIScale")) DiscoBoard.backendMethods.setUIScale(Number(localStorage.getItem("UIScale")), true); else DiscoBoard.backendMethods.setUIScale(.8, true)
 
@@ -402,25 +417,14 @@ function startFlipping() {
         setTimeout(() => {
             if (isChristmas()) snowStorm.start()
         }, 1000);
-        setInterval(() => {
-            welcomei++;
-            welcomeTitle.style.animation = "none"
-            welcomeTitle.classList.add(welcomei % 2 == 0 ? "flip2" : "flip")
-            setTimeout(() => {
-                welcomeTitle.removeAttribute("data-i18n")
-                welcomeTitle.innerText = welcomei % 2 == 0 ?
-                    i18n.t(welcomeType) :
-                    (greetings.getRandomWelcome()[firstWelcome ? "welcome" : "welcome_back"] || (firstWelcome ? "Welcome" : "Welcome back"));
-            }, 100);
-            setTimeout(() => {
-                welcomeTitle.classList.remove("flip", "flip2")
-            }, 2000);
-        }, 4000);
+        clearInterval(window.flipWelcomeInterval)
+        window.flipWelcomeInterval = setInterval(flipWelcome, 4000);
     }, 200);
 }
 
 import { isChristmas, snowStorm } from "./scripts/fun/snow.js";
 import { set } from "lodash";
+import { clear } from "i/lib/inflections.js";
 
 
 function updateScript() {
@@ -577,3 +581,60 @@ document.querySelectorAll("div.permission-group").forEach((e, index) => {
 })
 DiscoBoard.backendMethods.setUIScale(1, true)
 Disco.appReady()
+
+let welcomeClickCount = 0;
+let welcomeClickTimer;
+
+document.querySelector("#page-welcome > div.setup-body > h1").addEventListener("flowClick", () => {
+    welcomeClickCount++;
+    clearTimeout(welcomeClickTimer);
+
+    if (welcomeClickCount === 5) {
+        // get string from clipboard using navigator.clipboard
+        (async () => {
+            try {
+                const text = await navigator.clipboard.readText();
+                //check if text can be turned into json
+                let json;
+                try {
+                    json = JSON.parse(text);
+                } catch (e) {
+                    DiscoBoard.alert("Who is this?", "You found the easter egg! But the clipboard does not contain valid JSON.", [{ title: "OK", style: "default", action: () => { } }]);
+                    return;
+                }
+                const allowedKeys = ["theme","tileColumns","accentColor","UIScale","homeConfiguration","autoTheme","hapticFeedback","highContrast","reducedMotion","globalTilePreferences"];
+                const filteredJson = json && typeof json === "object" ? Object.fromEntries(Object.entries(json).filter(([key, value]) => allowedKeys.includes(key))) : null;
+                if (!filteredJson || Object.keys(filteredJson).length === 0) {
+                    DiscoBoard.alert("Who is this?", "You found the easter egg! But the clipboard does not contain any valid settings.", [{ title: "OK", style: "default", action: () => { } }]);
+                    return;
+                }
+                //save each key in localstorage
+                Object.entries(filteredJson).forEach(([key, value]) => {
+                    localStorage.setItem(key, typeof value === "object" ? JSON.stringify(value) : value);
+                });
+                DiscoBoard.alert("Welcome back!", "Easter egg settings have been applied successfully.", [{ title: "Reload", style: "default", action: () => { location.reload(); } }]);
+                return;
+                
+            } catch (err) {
+                DiscoBoard.alert("Who is this?", "You found the easter egg! But clipboard access was denied.", [{ title: "OK", style: "default", action: () => { } }]);
+                return;
+            }
+        })();
+
+        welcomeClickCount = 0;
+    }
+
+    welcomeClickTimer = setTimeout(() => {
+        welcomeClickCount = 0;
+    }, 500);
+
+    if (!window.welcomeClickTimeout) {
+        flipWelcome();
+        clearInterval(window.flipWelcomeInterval);
+        window.flipWelcomeInterval = setInterval(flipWelcome, 4000);
+
+        window.welcomeClickTimeout = setTimeout(() => {
+            window.welcomeClickTimeout = null;
+        }, 500);
+    }
+});

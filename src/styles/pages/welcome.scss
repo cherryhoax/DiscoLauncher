@@ -334,7 +334,12 @@ body.animate-intro #welcome-page {
                         margin-right: auto;
                         max-width: calc(100% - 44px);
                         padding: 0px 20px;
-
+                        transition: .5s;
+                        &.t_active{
+                            transition: .125s;
+                            scale:.9;
+                            opacity: .75;
+                        }
                         //if page is landscape
                         @media (min-aspect-ratio: 1) {
                             margin-top: calc(max(calc(var(--top-transform) * 1vh) - (calc(var(--top-transform) * 1vw) - calc(var(--top-transform) * 1vh)), 10px));
