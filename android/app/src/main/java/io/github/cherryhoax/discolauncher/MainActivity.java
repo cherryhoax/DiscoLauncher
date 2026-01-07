@@ -435,6 +435,9 @@ public class MainActivity extends AppCompatActivity {
                     // Start periodic UI updater
                     logHandler.post(logUpdateRunnable);
                     while (running && (line = reader.readLine()) != null) {
+                        // Skip logs from discolauncher tag to prevent infinite loop
+                        if (line.contains("discolauncher")) continue;
+                        
                         String type = "V"; // default to Verbose
                         if (line.contains("/D")) type = "D";
                         else if (line.contains("/I")) type = "I";
