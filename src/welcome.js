@@ -28,6 +28,7 @@ import DiscoBoard from "./scripts/DiscoBoard";
 window.DiscoBoard = DiscoBoard
 import "./scripts/flowTouch.js";
 
+
 $(window).on("systemInsetsChange", function () {
     DiscoBoard.backendMethods.refreshInsets()
 })
@@ -80,10 +81,6 @@ window.goToPage = goToPage
 );*/
 //alert.querySelector("button").style.visibility = "hidden"
 
-function finishSetup() {
-
-}
-
 const accessibility_scroller = new DiscoScroll("#page-access div.scroller", {
     scrollbar: true
 
@@ -100,7 +97,8 @@ const whats_new_scroller = new DiscoScroll("#page-readme div.scroller", {
     scrollbar: true
 
 })
-
+DiscoBoard.backendMethods.setUIScale(1, true)
+Disco.appReady()
 $("div.accent-color-catalogue-item").on("flowClick", function () {
     $("div.accent-color-catalogue-item").removeClass("selected")
     $(this).addClass("selected")
@@ -592,8 +590,6 @@ document.querySelectorAll("div.permission-group").forEach((e, index) => {
     setInterval(interval, 1000)
     interval()
 })
-DiscoBoard.backendMethods.setUIScale(1, true)
-Disco.appReady()
 
 let welcomeClickCount = 0;
 let welcomeClickTimer;
@@ -615,7 +611,7 @@ document.querySelector("#page-welcome > div.setup-body > h1").addEventListener("
                     DiscoBoard.alert("Who is this?", "You found the easter egg! But the clipboard does not contain valid JSON.", [{ title: "OK", style: "default", action: () => { } }]);
                     return;
                 }
-                const allowedKeys = ["theme","tileColumns","accentColor","UIScale","homeConfiguration","autoTheme","hapticFeedback","highContrast","reducedMotion","globalTilePreferences"];
+                const allowedKeys = ["theme", "tileColumns", "accentColor", "UIScale", "homeConfiguration", "autoTheme", "hapticFeedback", "highContrast", "reducedMotion", "globalTilePreferences"];
                 const filteredJson = json && typeof json === "object" ? Object.fromEntries(Object.entries(json).filter(([key, value]) => allowedKeys.includes(key))) : null;
                 if (!filteredJson || Object.keys(filteredJson).length === 0) {
                     DiscoBoard.alert("Who is this?", "You found the easter egg! But the clipboard does not contain any valid settings.", [{ title: "OK", style: "default", action: () => { } }]);
@@ -627,7 +623,7 @@ document.querySelector("#page-welcome > div.setup-body > h1").addEventListener("
                 });
                 DiscoBoard.alert("Welcome back!", "Easter egg settings have been applied successfully.", [{ title: "Reload", style: "default", action: () => { location.reload(); } }]);
                 return;
-                
+
             } catch (err) {
                 DiscoBoard.alert("Who is this?", "You found the easter egg! But clipboard access was denied.", [{ title: "OK", style: "default", action: () => { } }]);
                 return;
