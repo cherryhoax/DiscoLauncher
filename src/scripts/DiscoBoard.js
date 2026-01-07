@@ -1104,7 +1104,7 @@ const backendMethods = {
       window.defaultLiveTiles = {}
       Object.values(DiscoBoard.boardMethods.liveTiles.init).reverse().forEach(liveTileID => {
         const match = boardMethods.liveTiles.getProviders().find(item => item.id === liveTileID);
-        if (match) {
+        if (match && match.metadata && match.metadata.provide) {
           match.metadata.provide.forEach(packageName => {
             window.defaultLiveTiles[packageName] = liveTileID
           })
