@@ -415,14 +415,27 @@ function startFlipping() {
 
     setTimeout(() => {
         setTimeout(() => {
-            if (isChristmas()) snowStorm.start()
+            if (isWinter()) snowStorm.start()
         }, 1000);
+
+        // If we're in a near-holiday window, set the appropriate plushy wallpaper
+        try {
+            const bg = document.getElementById("background")
+            if (bg) {
+                if (isChristmas()) {
+                    bg.style.backgroundImage = "url(./../assets/wall-jollyplushy.png)"
+                } else if (isHalloween()) {
+                    bg.style.backgroundImage = "url(./../assets/wall-spookyplushy.png)"
+                }
+            }
+        } catch (e) { }
+
         clearInterval(window.flipWelcomeInterval)
         window.flipWelcomeInterval = setInterval(flipWelcome, 4000);
     }, 200);
 }
 
-import { isChristmas, snowStorm } from "./scripts/fun/snow.js";
+import { isChristmas, isWinter, isHalloween, snowStorm } from "./scripts/fun/snow.js";
 import { set } from "lodash";
 import { clear } from "i/lib/inflections.js";
 
