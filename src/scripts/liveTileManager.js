@@ -25,7 +25,13 @@ function main_registerLiveTileWorker(packageName, uid) {
     if (!provider) {
         throw new Error('Provider not found');
     }
-    if (!provider.metadata.provide.includes(packageName)) {
+    const providedPackages = Array.isArray(provider.metadata?.provide)
+        ? provider.metadata.provide
+        : [];
+
+    if (!providedPackages.length) {
+        console.warn('Provider metadata missing provide list', provider);
+    } else if (!providedPackages.includes(packageName)) {
         console.error('Package not provided by provider');
     }
     const workerScript = provider.script;
@@ -206,7 +212,20 @@ async function main_registerLiveTileProvider(workerScript) {
     if (!metadata) {
         throw new Error(`Metadata not found for package: ${uid}`);
     }
-    liveTileProviders.push({ id: uid, script: workerScript, metadata: Object.assign({ name: "Unknown", author: "Unknown", minVersion: 50, targetVersion: 50, description: "Unknown" }, metadata) });
+    const normalizedMetadata = Object.assign({
+        name: "Unknown",
+        author: "Unknown",
+        minVersion: 50,
+        targetVersion: 50,
+        description: "Unknown",
+        provide: []
+    }, metadata);
+
+    if (!Array.isArray(normalizedMetadata.provide)) {
+        normalizedMetadata.provide = [];
+    }
+
+    liveTileProviders.push({ id: uid, script: workerScript, metadata: normalizedMetadata });
     return uid;
 }
 function main_unregisterLiveTileProvider(uid) {
