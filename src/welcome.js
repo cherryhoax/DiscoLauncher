@@ -122,7 +122,7 @@ setup.permissions = !allPermissions.some(e => !Disco.checkPermission(e))
 
 if (updatedApp) {
     document.querySelector("#page-welcome > div.setup-body > h1").innerText = "Welcome back"
-    document.querySelector("#page-welcome > div.setup-body > p:nth-child(3)").innerText = "Let’s check a few details to enhance your updated experience."
+    document.querySelector("#page-welcome > div.setup-footer > p:nth-child(1)").innerText = "Let’s check a few details to enhance your updated experience."
 }
 if ((Disco.getWebViewVersion().includes("chrome") || Disco.getAppVersion().includes("nightly")) && BuildConfig["CHANGELOG"] && setup.whats_new) {
     try {
