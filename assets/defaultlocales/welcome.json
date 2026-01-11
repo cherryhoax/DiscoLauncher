@@ -1,0 +1,61 @@
+{
+    "common": {
+        "next": "next",
+        "previous": "previous",
+        "pleaseWait": "Please wait..."
+    },
+    "welcome": {
+        "install": "Welcome",
+        "update": "Welcome back",
+        "appName": "Disco Launcher",
+        "setupIntro": "Let's setup your experience in a few short steps.",
+        "warning": "Warning: This is pre-release software and may contain bugs."
+    },
+    "wizard": {
+        "title": "Update Wizard",
+        "description": "Let's ensure your data is moved across safely! Click next to continue."
+    },
+    "access": {
+        "title": "Ease of Access",
+        "description": "Customize your experience to ensure that everything feels just right.",
+        "background": "Background",
+        "scaling": "Scaling"
+    },
+    "themes": {
+        "light": "Light",
+        "dark": "Dark",
+        "auto": "Auto"
+    },
+    "colors": {
+        "title": "Choose your color",
+        "description": "Pick a color that matches your mood."
+    },
+    "permissions": {
+        "title": "Permissions",
+        "groups": {
+            "contacts": {
+                "title": "Contacts",
+                "description": "Access to contacts is needed to display your contacts live tile."
+            },
+            "photos": {
+                "title": "Photos",
+                "description": "Access to photos is needed to display your photos live tile."
+            },
+            "notifications": {
+                "title": "Notifications",
+                "description": "Access to notifications is needed to display your notifications live tile."
+            },
+            "accessibility": {
+                "title": "Accessibility",
+                "description": "Enable accessibility to lock device."
+            }
+        }
+    },
+    "whatsnew": {
+        "title": "What's New?"
+    },
+    "finish": {
+        "title": "Get ready to Disco",
+        "description": "Your setup is done. Time to dive in!"
+    }
+}
