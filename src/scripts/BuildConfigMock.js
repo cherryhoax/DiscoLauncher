@@ -49,8 +49,20 @@ class BuildConfigMock {
     }
     getAppArchitecture() {
         // For web mock, detect via query param or fallback
-        const match = window.location.search.match(/arch=([\w-]+)/);
+            const match = window.location.search.match(/arch=([\w-]+)/);
         return match ? match[1] : "x86_64";
+    }
+    REPOSITORY_URL() {
+        return buildConfig["REPOSITORY_URL"] || "";
+    }
+    REPOSITORY_NAME() {
+        return buildConfig["REPOSITORY_NAME"] || "";
+    }
+    LOCALIZATION_REPOSITORY_URL() {
+        return buildConfig["LOCALIZATION_REPOSITORY_URL"] || "";
+    }
+    LOCALIZATION_REPOSITORY_NAME() {
+        return buildConfig["LOCALIZATION_REPOSITORY_NAME"] || "";
     }
 }
 export default BuildConfigMock;

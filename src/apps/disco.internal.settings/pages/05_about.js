@@ -35,7 +35,33 @@ function formatFileSize(size) {
 document.querySelector("#updatebutton").addEventListener("flowClick", (e) => {
     e.target.classList.add("loading")
     const isBeta = Disco.getAppVersion().includes("beta") || Disco.getAppVersion() == 'web-test'
-    fetch('https://api.github.com/repos/discolauncher/DiscoLauncher/releases?per_page=10')
+
+    const getReleasesApi = () => {
+        const repoUrl = (window.BuildConfig && typeof window.BuildConfig.REPOSITORY_URL === "function" && window.BuildConfig.REPOSITORY_URL()) || "";
+        if (!repoUrl) return null;
+        try {
+            const url = new URL(repoUrl.replace(/\\:/g, ':').replace(/\\\//g, '/'));
+            const parts = url.pathname.split('/').filter(Boolean);
+            if (parts.length >= 2) {
+                const owner = parts[0];
+                const repo = parts[1];
+                return `https://api.github.com/repos/${owner}/${repo}/releases?per_page=10`;
+            }
+        } catch (_e) { }
+        return null;
+    }
+    const releasesApi = getReleasesApi();
+    if (!releasesApi) {
+        document.querySelector("#updatebutton").classList.remove("loading")
+        window.parent.DiscoBoard.alert(
+            window.i18n.t("settings.alerts.update_check_failed.title"),
+            window.i18n.t("settings.alerts.update_check_failed.message"),
+            [{ title: window.i18n.t("common.actions.ok"), style: "default", inline: true, action: () => { } }]
+        );
+        return;
+    }
+
+    fetch(releasesApi)
         .then(response => response.json())
         .then(releases => {
             const availableReleases = releases.filter(release => (release.name.includes("beta") == isBeta))

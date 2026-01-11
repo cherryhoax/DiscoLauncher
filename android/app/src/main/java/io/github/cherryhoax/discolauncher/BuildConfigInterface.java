@@ -56,6 +56,26 @@ public class BuildConfigInterface {
         // Replace with actual architecture detection if needed
         return System.getProperty("os.arch", "unknown");
     }
+
+    @JavascriptInterface
+    public String REPOSITORY_URL() {
+        return BuildConfig.REPOSITORY_URL;
+    }
+
+    @JavascriptInterface
+    public String REPOSITORY_NAME() {
+        return BuildConfig.REPOSITORY_NAME;
+    }
+
+    @JavascriptInterface
+    public String LOCALIZATION_REPOSITORY_URL() {
+        return BuildConfig.LOCALIZATION_REPOSITORY_URL;
+    }
+
+    @JavascriptInterface
+    public String LOCALIZATION_REPOSITORY_NAME() {
+        return BuildConfig.LOCALIZATION_REPOSITORY_NAME;
+    }
 }
 //HELLO YALL
 //THIS IS THE BUILD CONFIG INTERFACE

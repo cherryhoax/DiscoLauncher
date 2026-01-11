@@ -55,6 +55,27 @@ android {
             name = "CHANGELOG",
             value = "\"${localProperties.getProperty("CHANGELOG", "")}\""
         )
+        // Repository metadata
+        buildConfigField(
+            type = "String",
+            name = "REPOSITORY_URL",
+            value = "\"${localProperties.getProperty("REPOSITORY_URL", "")}\""
+        )
+        buildConfigField(
+            type = "String",
+            name = "REPOSITORY_NAME",
+            value = "\"${localProperties.getProperty("REPOSITORY_NAME", "")}\""
+        )
+        buildConfigField(
+            type = "String",
+            name = "LOCALIZATION_REPOSITORY_URL",
+            value = "\"${localProperties.getProperty("LOCALIZATION_REPOSITORY_URL", "")}\""
+        )
+        buildConfigField(
+            type = "String",
+            name = "LOCALIZATION_REPOSITORY_NAME",
+            value = "\"${localProperties.getProperty("LOCALIZATION_REPOSITORY_NAME", "")}\""
+        )
     }
     
     val commitHash = getGitCommitHash()

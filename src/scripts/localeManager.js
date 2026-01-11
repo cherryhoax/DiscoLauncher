@@ -7,9 +7,44 @@ class Locale {
   }
 }
 const files = ["colors", "common", "readme", "settings", "welcome"]
+const defaultLocalizationRepo = ""; // Intentionally blank to avoid predefined URLs
+
+function getLocalizationBaseURL() {
+  const buildConfig = (window["BuildConfig"] || window.parent["BuildConfig"]) || {};
+  const rawRepoUrl = (() => {
+    if (typeof buildConfig.LOCALIZATION_REPOSITORY_URL === "function") {
+      return buildConfig.LOCALIZATION_REPOSITORY_URL();
+    }
+    return buildConfig["LOCALIZATION_REPOSITORY_URL"] || defaultLocalizationRepo;
+  })();
+
+  // Unescape common property-file escapes like https\://
+  let repoUrl = rawRepoUrl.replace(/\\:/g, ':').replace(/\\\//g, '/');
+  if (repoUrl && !/^https?:\/\//i.test(repoUrl)) {
+    repoUrl = `https://${repoUrl}`;
+  }
+
+  // Pattern 1: raw URLs (strip refs/heads and any trailing path after branch)
+  const rawMatch = repoUrl.match(/^https?:\/\/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/(?:refs\/heads\/)?([^/]+)(?:\/(?:languages.*)?)?/i);
+  if (rawMatch) {
+    const [, owner, repo, branch] = rawMatch;
+    return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/languages`;
+  }
+
+  // Pattern 2: github.com URLs, optionally with /tree/<branch> or /refs/heads/<branch>
+  const ghMatch = repoUrl.match(/^https?:\/\/github\.com\/([^/]+)\/([^/]+)(?:\/(?:tree|refs\/heads)\/([^/]+))?/i);
+  if (ghMatch) {
+    const [, owner, repo, branch = "main"] = ghMatch;
+    return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/languages`;
+  }
+
+  // Fallback: return as-is
+  return repoUrl;
+}
+
 function remoteFiles(locale = "en-US") {
-  const mainURL = `https://raw.githubusercontent.com/discolauncher/DiscoLauncherLocalization/refs/heads/main/languages/${locale}`
-  return Object.fromEntries(files.map(file => [file, `${mainURL}/${file}.json`]))
+  const mainURL = `${getLocalizationBaseURL()}/${locale}`;
+  return Object.fromEntries(files.map(file => [file, `${mainURL}/${file}.json`]));
 }
 const localeNames = {
   "key": { name: "DebugKey", nativeName: "DebugKey" },
@@ -104,7 +139,7 @@ const localization = {
     };
   })(),
   getLanguage: async (languageId) => {
-    const baseUrl = 'https://raw.githubusercontent.com/discolauncher/DiscoLauncherLocalization/main/languages';
+    const baseUrl = getLocalizationBaseURL();
     const files = ['colors', 'common', 'readme', 'settings', 'welcome'];
     const languageData = {};
 

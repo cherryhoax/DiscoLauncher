@@ -57,7 +57,28 @@ function checkUpdate(force = false) {
                 return;
             }
         }
-        fetch('https://api.github.com/repos/discolauncher/DiscoLauncher/releases?per_page=10')
+        const getReleasesApi = () => {
+            const repoUrl = (window.parent.BuildConfig && typeof window.parent.BuildConfig.REPOSITORY_URL === "function" && window.parent.BuildConfig.REPOSITORY_URL()) || "";
+            if (!repoUrl) return null;
+            try {
+                const url = new URL(repoUrl.replace(/\\:/g, ':').replace(/\\\//g, '/'));
+                const parts = url.pathname.split('/').filter(Boolean);
+                if (parts.length >= 2) {
+                    const owner = parts[0];
+                    const repo = parts[1];
+                    return `https://api.github.com/repos/${owner}/${repo}/releases?per_page=10`;
+                }
+            } catch (_e) { }
+            return null;
+        }
+
+        const releasesApi = getReleasesApi();
+        if (!releasesApi) {
+            reject(new Error("Missing repository URL"));
+            return;
+        }
+
+        fetch(releasesApi)
             .then(response => response.json())
             .then(releases => {
                 if (releases["filter"]) {
