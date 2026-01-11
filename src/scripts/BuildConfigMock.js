@@ -18,7 +18,7 @@ if (window["DiscoMockInstance"] || window.parent["DiscoMockInstance"]) {
         buildConfig = {
             signed: false
         }
-        console.warn("RUNNING IN UNSIGNED TEST MODE")
+        console.warn("RUNNING IN UNSIGNED TEST MODE", error)
     }
 }
 class BuildConfigMock {
