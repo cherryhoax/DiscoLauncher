@@ -604,7 +604,7 @@ document.querySelector("#page-welcome > div.setup-body > h1").addEventListener("
         // get string from clipboard using navigator.clipboard
         (async () => {
             try {
-                const text = await navigator.clipboard.readText();
+                const text = await Disco.readClipboard();
                 //check if text can be turned into json
                 let json;
                 try {

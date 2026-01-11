@@ -57,7 +57,7 @@ document.getElementById("pm-chooser").addEventListener('selected', (e) => {
 document.querySelector("#dumpbtn").addEventListener("flowClick", async () => {
     try {
 
-        if (await Disco.copyToClipboard(JSON.stringify(window.parent.allappsarchive))) {
+        if (await Disco.writeClipboard(JSON.stringify(window.parent.allappsarchive))) {
             parent.DiscoBoard.alert(
                 window.i18n.t("settings.alerts.copy_success.title"),
                 window.i18n.t("settings.alerts.copy_success.message"),

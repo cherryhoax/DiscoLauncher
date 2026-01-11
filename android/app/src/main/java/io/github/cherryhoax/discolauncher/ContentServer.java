@@ -117,6 +117,37 @@ public class ContentServer extends WebViewClientCompat {
                                     }
                                 }
                                 
+                                // If an icon pack is supplying the foreground, suppress the adaptive background
+                                // so the pack's own shape shows cleanly.
+                                boolean suppressBackground = false;
+
+                                if (mainActivity.iconPackPerApp.containsKey(iconPackageName)
+                                        && mainActivity.iconPackPerApp.get(iconPackageName) != null
+                                        && !mainActivity.iconPackPerApp.get(iconPackageName).isEmpty()) {
+
+                                    String perAppIconPack = mainActivity.iconPackPerApp.get(iconPackageName);
+                                    IconPack perAppIconPackInstance = new IconPack();
+                                    perAppIconPackInstance.packageName = perAppIconPack;
+                                    perAppIconPackInstance.setContext(mainActivity);
+                                    perAppIconPackInstance.load();
+
+                                    if (perAppIconPackInstance.hasIconForPackage(iconPackageName)) {
+                                        // Only suppress when the pack can actually render the icon
+                                        Bitmap packIcon = perAppIconPackInstance.getIconForPackage(iconPackageName, dra);
+                                        suppressBackground = packIcon != null;
+                                    }
+                                } else if (!mainActivity.iconPack.isEmpty() && mainActivity.iconPackInstance != null) {
+                                    // Fall back to global icon pack
+                                    if (mainActivity.iconPackInstance.hasIconForPackage(iconPackageName)) {
+                                        Bitmap packIcon = mainActivity.iconPackInstance.getIconForPackage(iconPackageName, dra);
+                                        suppressBackground = packIcon != null;
+                                    }
+                                }
+
+                                if (suppressBackground) {
+                                    return new WebResourceResponse(null, null, null);
+                                }
+
                                 if (dra != null)
                                     inputStream = Utils.loadBitmapAsStream(dra);
                                 if (inputStream != null) {
@@ -155,27 +186,6 @@ public class ContentServer extends WebViewClientCompat {
                                 InputStream inputStream = null;
                                 Bitmap dra = discoWebView.getAppIconBackground(discoWebView.packageManager,
                                         iconPackageNameWithIntent);
-                                
-                                // Check per-app icon pack first
-                                if (mainActivity.iconPackPerApp.containsKey(iconPackageName) && 
-                                    mainActivity.iconPackPerApp.get(iconPackageName) != null &&
-                                    !mainActivity.iconPackPerApp.get(iconPackageName).isEmpty()) {
-                                    
-                                    String perAppIconPack = mainActivity.iconPackPerApp.get(iconPackageName);
-                                    IconPack perAppIconPackInstance = new IconPack();
-                                    perAppIconPackInstance.packageName = perAppIconPack;
-                                    perAppIconPackInstance.setContext(mainActivity);
-                                    //perAppIconPackInstance.load();
-                                    
-                                    if (perAppIconPackInstance.hasIconForPackage(iconPackageName)) {
-                                        return new WebResourceResponse(null, null, null);
-                                    }
-                                } else if (mainActivity.iconPack != "") {
-                                    // Fall back to global icon pack
-                                    if (mainActivity.iconPackInstance.hasIconForPackage(iconPackageName)) {
-                                        return new WebResourceResponse(null, null, null);
-                                    }
-                                }
                                 
                                 if (dra != null)
                                     inputStream = Utils.loadBitmapAsStream(dra);

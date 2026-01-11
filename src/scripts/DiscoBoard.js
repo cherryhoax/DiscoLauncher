@@ -1285,8 +1285,9 @@ const backendMethods = {
         backgroundTarget.style.backgroundColor = 'var(--accent-color)';
         backgroundTarget.style.backgroundImage = 'none'; // Clear any existing background image
       } else {
-        backgroundTarget.style.backgroundColor = '';
-        backgroundTarget.style.backgroundImage = ''; // Reset background image
+        // Leave existing backgrounds untouched when preference is default/unknown
+        backgroundTarget.style.backgroundColor = backgroundTarget.style.backgroundColor;
+        backgroundTarget.style.backgroundImage = backgroundTarget.style.backgroundImage;
       }
     }
 

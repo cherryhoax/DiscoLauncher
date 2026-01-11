@@ -676,12 +676,28 @@ public class WebInterface {
     }
 
     @JavascriptInterface
-    public String copyToClipboard(String text) {
+    public String writeClipboard(String text) {
         try {
             ClipboardManager clipboard = (ClipboardManager) mainActivity.getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("text", text);
             clipboard.setPrimaryClip(clip);
             return "true";
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    @JavascriptInterface
+    public String readClipboard() {
+        try {
+            ClipboardManager clipboard = (ClipboardManager) mainActivity.getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clipData = clipboard.getPrimaryClip();
+            if (clipData != null && clipData.getItemCount() > 0) {
+                CharSequence text = clipData.getItemAt(0).coerceToText(mainActivity);
+                return text.toString();
+            } else {
+                return "";
+            }
         } catch (Exception e) {
             return "";
         }

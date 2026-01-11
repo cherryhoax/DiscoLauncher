@@ -161,7 +161,7 @@ class DiscoMock {
             "galleryApp": "com.google.android.apps.photos"
         })
     }
-    async copyToClipboard(text) {
+    async writeClipboard(text) {
         try {
             await navigator.clipboard.writeText(text);
             console.log("Copied to clipboard:", text);
@@ -169,6 +169,16 @@ class DiscoMock {
         } catch (error) {
             console.error("Failed to copy to clipboard:", error);
             return "false";
+        }
+    }
+    async readClipboard() {
+        try {
+            const text = await navigator.clipboard.readText();
+            console.log("Read from clipboard:", text);
+            return text;
+        } catch (error) {
+            console.error("Failed to read from clipboard:", error);
+            return "";
         }
     }
     getDisplayOrientation() {
