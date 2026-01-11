@@ -418,7 +418,7 @@ body.animate-intro #welcome-page {
         opacity: 0;
     }
 
-    transition: 1s .1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: 1s .1s cubic-bezier(0.075, 0.82, 0.165, 1), background-image 0s ease-in-out;
 
     &.hide {
         body:not(.reduced-motion) {

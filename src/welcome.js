@@ -423,9 +423,9 @@ function startFlipping() {
             const bg = document.getElementById("background")
             if (bg) {
                 if (isChristmas()) {
-                    bg.style.backgroundImage = "url(./../assets/wall-jollyplushy.png)"
+                    bg.style.backgroundImage = "url(./assets/wall-jollyplushy.png)"
                 } else if (isHalloween()) {
-                    bg.style.backgroundImage = "url(./../assets/wall-spookyplushy.png)"
+                    bg.style.backgroundImage = "url(./assets/wall-spookyplushy.png)"
                 }
             }
         } catch (e) { }
