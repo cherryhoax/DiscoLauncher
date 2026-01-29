@@ -195,7 +195,9 @@ window.addEventListener("activityResume", () => {
 if (!!localStorage.getItem("accentColor")) DiscoBoard.backendMethods.setAccentColor(localStorage.getItem("accentColor"), true)
 startUpSequence([
     (next) => {
-        if (DiscoBoard.backendMethods.setupNeeded()) {
+        // Skip setup in theme-editor mode
+        const isThemeEditor = location.search.includes("theme-editor");
+        if (!isThemeEditor && DiscoBoard.backendMethods.setupNeeded()) {
             location.href = new URL("./welcome.html", location).href
         } else {
 
