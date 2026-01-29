@@ -195,9 +195,58 @@ window.addEventListener("activityResume", () => {
 if (!!localStorage.getItem("accentColor")) DiscoBoard.backendMethods.setAccentColor(localStorage.getItem("accentColor"), true)
 startUpSequence([
     (next) => {
-        if (DiscoBoard.backendMethods.setupNeeded()) {
+        // Skip setup in theme-editor mode
+        const isThemeEditor = location.search.includes("theme-editor");
+        if (!isThemeEditor && DiscoBoard.backendMethods.setupNeeded()) {
             location.href = new URL("./welcome.html", location).href
         } else {
+            // Set default home configuration when skipping setup in theme-editor mode
+            if (isThemeEditor && !localStorage["homeConfiguration"]) {
+                try {
+                    const defaultApps = JSON.parse(Disco.getDefaultApps())
+                    const searchApps = {
+                        "phoneApp": [0, 0, 2, 2],
+                        "messageApp": [2, 0, 1, 1],
+                        "browserApp": [3, 0, 1, 1],
+                        "mailApp": [2, 1, 1, 1],
+                        "storeApp": [3, 1, 1, 1],
+                        "contactsApp": [0, 2, 2, 2],
+                        "musicApp": [2, 2, 2, 2],
+                        "galleryApp": [0, 4, 4, 2]
+                    }
+                    var homeConfiguration = []
+                    Object.keys(searchApps).forEach(element => {
+                        try {
+                            const appdetail = DiscoBoard.backendMethods.getAppDetails(defaultApps[element])
+                            const app = searchApps[element]
+                            if (appdetail.label == "Unknown") throw new Error("App not found for ", element);
+
+                            homeConfiguration.push({
+                                "p": appdetail.packageName,
+                                "t": appdetail.label,
+                                "ii": false,
+                                "i": appdetail.icon.foreground,
+                                "ib": appdetail.icon.background,
+                                "s": [
+                                    "s",
+                                    "m",
+                                    "w"
+                                ],
+                                "w": app[2],
+                                "h": app[3],
+                                "x": app[0],
+                                "y": app[1]
+                            })
+
+                        } catch (error) {
+
+                        }
+                    });
+                    localStorage["homeConfiguration"] = JSON.stringify(homeConfiguration)
+                } catch (error) {
+                    console.error("Failed to create default home configuration:", error)
+                }
+            }
 
             if (location.search.includes("firstload")) {
                 DiscoBoard.backendMethods.setUIScale(1)
